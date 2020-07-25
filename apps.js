@@ -35,13 +35,46 @@ async function promptUser() {
       message: "Employee's name:",
     });
 
-    // please select the role applied for
-    const { role } = await inquirer.prompt({
-      type: "list",
-      name: "role",
-      message: "Select which part of the team this employee is on:",
-      choices: ["Engineer", "Intern", "Manager"],
-    });
+    //Build an Engineering Team
+    getManagerdata();
+
+    function getManagerdata() {
+    prompt([
+        {
+          type:"input",
+          name: "managerName",
+          message: "Enter mangers name please",
+        },
+        {
+          type: "input",
+          name: "id",
+          message: "Employee Id number please?",
+          validate: function (id) {
+            const idValid = /^[1114-3009]+$/.test(id)
+                if (idValid) {
+                    console.log("Awesome, Thanks")
+                    return true;
+          }
+          else{
+            console.log(".please enter a new Id; choice not valid")
+            return false;
+          }
+        },
+      }
+      {
+        type: "input",
+        name: "mangeremail",
+        message: "Enters managers email",
+
+      },
+      {
+        type: "input",
+        name: "managersOfficeNumber",
+        message: "Enter the managers office number.",
+      }
+
+    ]);
+    
   } catch (err) {
     console.log(err); //required to complete
   }
