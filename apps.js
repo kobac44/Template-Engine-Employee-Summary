@@ -34,6 +34,14 @@ async function promptUser() {
       name: "name",
       message: "Employee's name:",
     });
+
+    // please select the role applied for
+    const { role } = await inquirer.prompt({
+      type: "list",
+      name: "role",
+      message: "Select which part of the team this employee is on:",
+      choices: ["Engineer", "Intern", "Manager"],
+    });
   } catch (err) {
     console.log(err); //required to complete
   }
