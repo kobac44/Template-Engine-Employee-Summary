@@ -1,4 +1,4 @@
-const Manager = require("./lib/Manager");
+ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
@@ -10,11 +10,29 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-const teamMemebers = [];
+//team members json object
+
+const employees = [];
+
+//function call to initialize
+
+promptUser();
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
+async function promptUser() {
+    try{
+        console.log(Welcome to the CLI HR Team Generator add your summer team here!);
+
+        //start with each team member/employee
+
+        const { name } = await inquirer.prompt({
+            type: "input",
+            name: "name",
+            message: "Employee's name:"
+        });
+}
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
