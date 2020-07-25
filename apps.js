@@ -60,7 +60,7 @@ async function promptUser() {
             return false;
           }
         },
-      }
+      },
       {
         type: "input",
         name: "mangeremail",
@@ -72,8 +72,94 @@ async function promptUser() {
         name: "managersOfficeNumber",
         message: "Enter the managers office number.",
       }
+    ]).then(answers => {
+      const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
+      teamMembers.push(manager);
+  });
+}
 
-    ]);
+  function addEngineer() {
+    prompt([
+
+    {
+      type: "input",
+      name: "engineerName",
+      message: "Enter the engineers name",
+    },
+    {
+      type: "input",
+      name: "engineerid",
+      message: "Enter engineers Id",
+      validate: function (id) {
+        const idValid = /^[1114-3009]+$/.test(id)
+            if (idValid) {
+                console.log("Awesome, Thanks")
+                return true;
+      }
+      else{
+        console.log(".please enter a new Id; choice not valid")
+        return false;
+      }
+    },
+  },
+  {
+    type: "input",
+    name: "engineerEmail",
+    message: "What is your email",
+  },
+  {
+    type: "input",
+    name: "engineerGithub",
+    message: "What is your Github username"
+  }
+]).then(function(answers) {
+  const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub)
+  team.push(engineer)
+  buildTeam()
+})
+}
+function addIntern() {
+  prompt([
+  {
+      type: "input",
+      name: "internName",
+      message: "Please enter the intern's name",
+  },
+  {
+      type: "input",
+      name: "internId",
+      message: "Enter the intern's id",
+      validate: function (id) {
+        const idValid = /^[1114-3009]+$/.test(id)
+            if (idValid) {
+                console.log("Awesome, Thanks")
+                return true;
+      }
+      else{
+        console.log(".please enter a new Id; choice not valid")
+        return false;
+      }
+    },
+  },
+  {
+      type: "input",
+      name: "internEmail",
+      message: "Enter the intern's email",
+  },
+  {
+      type: "input",
+      name: "internSchool",
+      message: "Enter the intern's educational institution",
+  }
+]).then(function(answers) {
+  const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool)
+  team.push(intern)
+})
+}
+
+
+});
+
     
   } catch (err) {
     console.log(err); //required to complete
