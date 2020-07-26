@@ -11,7 +11,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 
 //team members json object
-var team = [];
+const buildTeam = [];
 
 //function call to initialize
 
@@ -25,14 +25,6 @@ async function promptUser() {
     console.log(
       "Welcome to the CLI HR Team Generator add your summer team here!"
     );
-
-    //start with each team member/employee
-
-    const { name } = await inquirer.prompt({
-      type: "input",
-      name: "name",
-      message: "Employee's name:",
-    });
 
     //Build an Engineering Team
     getManagerInfo();
@@ -61,85 +53,87 @@ async function promptUser() {
             name: "managerOfficeNumber",
             message: "Enter the managers office number",
           },
-        ])
-        .then(function (answers) {
-          const manager = new Manager(
-            answers.managerName,
-            answers.managerId,
-            answers.managerEmail,
-            answers.managerOfficeNumber
-          );
-          team.push(manager);
-          buildTeam();
-        });
+        ]),
+        
+    
 
-      function addEngineer() {
-        prompt([
-          {
-            type: "input",
-            name: "engineerName",
-            message: "Enter the engineers name",
-          },
-          {
-            type: "input",
-            name: "engineerid",
-            message: "Enter engineers Id",
-          },
-          {
-            type: "input",
-            name: "engineerEmail",
-            message: "What is your email",
-          },
-          {
-            type: "input",
-            name: "engineerGithub",
-            message: "What is your Github username",
-          },
-        ]).then(function (answers) {
-          const engineer = new Engineer(
-            answers.engineerName,
-            answers.engineerId,
-            answers.engineerEmail,
-            answers.engineerGithub
-          );
-          team.push(engineer);
-          buildTeam();
-        });
-      }
+      function buildTeam() {
+        inquirer.prompt([ 
+        {
+          type: "list",
+          name: "role",
+          message: "What is your role on the team?",
+          choices:["Engineer", "Intern", "no other team titles are required."];
+        }
+        ]).then((answer)=> {
+          if (answer.role === "Engineer"){
+            return inquirer.prompt([
+            {
+              type: "input",
+              name: "engineerName",
+              message: "Enter the engineers name",
+            },
+            {
+              type: "input",
+              name: "engineerid",
+              message: "Enter engineers Id",
+            },
+            {
+              type: "input",
+              name: "engineerEmail",
+              message: "What is your email",
+            },
+            {
+              type: "input",
+              name: "engineerGithub",
+              message: "What is your Github username",
+            },
+          ]).then((answer)=>)
+           const engineer = new Engineer[
+              answers.engineerName,
+              answers.engineerId,
+              answers.engineerEmail,
+              answers.engineerGithub
+            ];
+           }buildTeam.push(engineer);
+           buildTeam();
+          });
+  
+         function addIntern() {
+        inquirer.prompt([
+            {
+              type: "input",
+              name: "internName",
+              message: "Please enter the intern's name",
+            },
+            {
+              type: "input",
+              name: "internId",
+              message: "Enter the intern's id",
+            },
+            {
+              type: "input",
+              name: "internEmail",
+              message: "Enter the intern's email",
+            },
+            {
+              type: "input",
+              name: "internSchool",
+              message: "Enter the intern's educational institution",
+            },
+          
+          ]).then(answers => {
+            const intern = new Intern(
+              answers.internName,
+              answers.internId,
+              answers.internEmail,
+              answers.internSchool
+            );
+            buildTeam.push(intern);
+            buildTeam();
 
-      function addIntern() {
-        prompt([
-          {
-            type: "input",
-            name: "internName",
-            message: "Please enter the intern's name",
-          },
-          {
-            type: "input",
-            name: "internId",
-            message: "Enter the intern's id",
-          },
-          {
-            type: "input",
-            name: "internEmail",
-            message: "Enter the intern's email",
-          },
-          {
-            type: "input",
-            name: "internSchool",
-            message: "Enter the intern's educational institution",
-          },
-        ]).then(function (answers) {
-          const intern = new Intern(
-            answers.internName,
-            answers.internId,
-            answers.internEmail,
-            answers.internSchool
-          );
-          team.push(intern);
-          buildTeam();
-        });
-      }
+          });
+      
 
       function buildTeam() {
         prompt([
@@ -163,21 +157,17 @@ async function promptUser() {
         });
       }
     }
-  } catch (err) {
-    console.log(err); // log error if try does not complete
-  }
-}
 
-// function generateTeam() {
-//   const employees = render(team);
-//   fs.writeFile(outputPath, employees, function(err) {
-//       if(err){
-//           console.log(err);
-//       }
-//           console.log("Data entered!");
-//   })
-
-// };
+    // function generateTeam() {
+    //   const employees = render(team);
+    //   fs.writeFile(outputPath, employees, function (err) {
+    //     if (err) {
+    //       console.log(err);
+    //     }
+    //     console.log("Data entered!");
+    //   });
+    // }
+//    
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
