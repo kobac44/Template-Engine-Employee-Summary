@@ -156,7 +156,7 @@ async function promptUser() {
         }
         fs.writeFileSync(outputPath, render(employees), "utf8");
         console.log(
-          "Team has been successfully written to team.html: Let's get to work!"
+          "This HR Team will be the Summer Success for the MIO Tech Company!"
         );
         break;
     }
