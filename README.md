@@ -74,7 +74,7 @@ tutor: Aaron Lee (initial code support)
 
 ##### Picture of Developer:
 
-https://avatars0.githubusercontent.com/u/64295408?s=460&u=03a2ee098927d3b515fe83fa2845546a7b641249&v=4
+<img src="https://avatars0.githubusercontent.com/kobac44" width="200px">
 
 ## Credits
 
