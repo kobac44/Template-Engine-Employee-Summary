@@ -88,4 +88,4 @@ https://getbootstrap.com/
 
 - Screenshot
 
-<img src=" ./Assets\output team screen shot.jpg" width="500px">
+<img src="./Assets/output team screen shot.jpg" width="500px">
