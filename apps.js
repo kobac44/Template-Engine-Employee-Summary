@@ -94,7 +94,7 @@ async function promptUser() {
     const { Int } = await inquirer.prompt({
       type: "input",
       name: "Int",
-      message: "Intern should enter the school connect to this HR prog.:",
+      message: "Intern should enter the school connect to this HR prog:",
       when: (answers) => role === "Intern",
     });
 
