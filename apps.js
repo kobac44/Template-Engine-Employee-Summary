@@ -45,7 +45,7 @@ async function promptUser() {
           console.log("      YES!!!");
           return true;
         } else {
-          console.log(".  Please enter a new id; not a valid whole number");
+          console.log(".  Please enter a number between 1000 and 3009");
           return false;
         }
       },
@@ -84,7 +84,7 @@ async function promptUser() {
 
     const { Eng } = inquirer.prompt({
       type: "input",
-      name: "Engineer",
+      name: "Github",
       message: "Engineers will enter thier Github:",
       when: (answers) => role === "Engineer",
     });
