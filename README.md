@@ -1,6 +1,6 @@
 # Unit 10 OOP Homework: Template Engine - Employee Summary
 
-https://www.npmjs.com/package/inquirer-emoji
+[![npm version](https://badgen.net/npm/v/inquirer-emoji)](https://www.npmjs.com/package/inquirer-emoji)
 
 ## Instructions
 
